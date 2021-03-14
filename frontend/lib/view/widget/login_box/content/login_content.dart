@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:frontend/constants/color_constants.dart';
 import 'package:frontend/model/account.dart';
 import 'package:frontend/services/account_service.dart';
+import 'package:frontend/services/locator.dart';
 import 'package:frontend/view/page/register/register_view.dart';
 import 'package:frontend/view/widget/buttons/default_button.dart';
 import 'package:frontend/view/widget/input_field/default_inputfield.dart';
@@ -9,9 +10,10 @@ import 'package:frontend/view/widget/links/text_link.dart';
 import 'package:get_it/get_it.dart';
 
 class LoginContent extends StatelessWidget {
-  final TextEditingController emailTec, passwordTec;
+  final TextEditingController emailTec = TextEditingController(),
+      passwordTec = TextEditingController();
   final double height;
-  LoginContent({this.emailTec, this.passwordTec, this.height});
+  LoginContent({this.height});
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -42,6 +44,8 @@ class LoginContent extends StatelessWidget {
             textEditingController: passwordTec,
             hintText: "password",
             labelText: "Password",
+            obsecureText: true,
+            textInputType: TextInputType.visiblePassword,
           ),
           DefaultButton(
             onPressed: () async {

@@ -25,8 +25,6 @@ class LoginBox extends StatelessWidget {
       width: w,
       child: Center(
         child: LoginContent(
-          emailTec: emailTec,
-          passwordTec: passwordTec,
           height: h,
         ),
       ),
