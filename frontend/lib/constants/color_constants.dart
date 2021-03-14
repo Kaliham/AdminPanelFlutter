@@ -1,0 +1,20 @@
+import 'package:flutter/material.dart';
+
+const Color kBiscay = Color(0xFF596275);
+const Color kPencilLead = Color(0xFF303952);
+const Color kOldGeranium = Color(0xFFcf6a87);
+const Color kDeepRose = Color(0xFFc44569);
+const Color kBrewedMustard = Color(0xFFe77f67);
+const Color kTigerLily = Color(0xFFe15f41);
+const Color kRougePink = Color(0xFFf8a5c2);
+const Color kPurpleMountain = Color(0xFF786fa6);
+const Color kSqueaky = Color(0xFF63cdda);
+const Color kAppleValley = Color(0xFFea8685);
+const Color kCornFlower = Color(0xFF546de5);
+const Color kSoftBlue = Color(0xFF778beb);
+const Color kRosyHighlight = Color(0xFFf7d794);
+const Color kSummerTime = Color(0xFFf5cd79);
+const Color kCreamyPeach = Color(0xFFf3a683);
+const Color kFlamingoPink = Color(0xFFf78fb3);
+const Color kBlueCuracao = Color(0xFF3dc1d3);
+const Gradient kGradient = LinearGradient(colors: [kSoftBlue, kBlueCuracao]);
