@@ -1,3 +1,6 @@
+import 'package:frontend/services/locator.dart';
+import 'package:frontend/services/preference_service.dart';
+
 class Complaint {
   String title;
   String description;
@@ -7,6 +10,7 @@ class Complaint {
   int occurrence;
   int rating;
   int id;
+  String email;
   List<String> platforms;
   Complaint({
     this.title,
@@ -18,5 +22,6 @@ class Complaint {
     this.rating,
     this.type,
     this.status = "pending resolution",
+    this.email,
   });
 }

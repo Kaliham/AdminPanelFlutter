@@ -62,7 +62,6 @@ class ProfileBoxContent extends StatelessWidget {
           width: 360,
           child: DefaultButton(
             onPressed: () async {
-              print(confirmPasswordTec.text);
               String response = await getIt
                   .get<AccountService>()
                   .changePassword(passwordTec.text, confirmPasswordTec.text,

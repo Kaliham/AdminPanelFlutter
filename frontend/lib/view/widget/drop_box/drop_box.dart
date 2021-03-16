@@ -5,7 +5,7 @@ class DropBox extends StatefulWidget {
   Map<String, dynamic> data;
   String text;
   var value;
-  DropBox({this.function, this.data, this.text, this.value = ""});
+  DropBox({this.function, this.data, this.text, this.value});
   @override
   _DropBoxState createState() => _DropBoxState();
 }

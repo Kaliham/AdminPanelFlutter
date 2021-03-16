@@ -39,10 +39,13 @@ class _ProfileBoxAdminContentState extends State<ProfileBoxAdminContent> {
             ),
           ),
         ),
-        DefaultInputField(
-          textEditingController: emailTec,
-          hintText: "e.g. email@example.com",
-          labelText: "Email",
+        Container(
+          width: 420,
+          child: DefaultInputField(
+            textEditingController: emailTec,
+            hintText: "e.g. email@example.com",
+            labelText: "Email",
+          ),
         ),
         Container(
           width: width / 4,
