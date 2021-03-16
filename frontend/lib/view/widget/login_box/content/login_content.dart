@@ -49,9 +49,11 @@ class LoginContent extends StatelessWidget {
           ),
           DefaultButton(
             onPressed: () async {
+              print(passwordTec.text);
               bool success = await GetIt.I
                   .get<AccountService>()
                   .login(emailTec.text, passwordTec.text);
+              print("success:${success.toString()}");
               if (success) {
                 Navigator.pushNamed(context, "/");
               } else {

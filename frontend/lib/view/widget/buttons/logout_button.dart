@@ -10,6 +10,7 @@ class LogoutButton extends StatelessWidget {
       style: ElevatedButton.styleFrom(primary: kOldGeranium),
       onPressed: () {
         GetIt.I.get<AccountService>().logout();
+        Navigator.pushNamed(context, "/");
       },
       child: Container(
         alignment: Alignment.center,

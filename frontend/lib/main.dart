@@ -4,10 +4,12 @@ import 'package:frontend/constants/color_constants.dart';
 import 'package:frontend/services/locator.dart';
 import 'package:frontend/services/preference_service.dart';
 import 'package:frontend/view/page/add/add_view.dart';
+import 'package:frontend/view/page/edit/edit_view.dart';
 import 'package:frontend/view/page/home/home_view.dart';
 import 'package:frontend/view/page/login/login_view.dart';
 import 'package:frontend/view/page/profile/profile_view.dart';
 import 'package:frontend/view/page/register/register_view.dart';
+import 'package:frontend/view/page/view/view_view.dart';
 import 'package:get_it/get_it.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -27,12 +29,13 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       routes: {
         '/': (context) => AuthWrapper(),
-        '/Home': (context) => HomeView(),
+        // '/Home': (context) => HomeView(),
         '/login': (context) => LoginView(),
         '/register': (context) => RegisterView(),
         '/profile': (context) => ProfileView(),
         '/add': (context) => AddView(),
       },
+      onGenerateRoute: _getRoute,
       theme: ThemeData(
         pageTransitionsTheme: PageTransitionsTheme(
             builders: {TargetPlatform.android: ZoomPageTransitionsBuilder()}),
@@ -45,6 +48,25 @@ class MyApp extends StatelessWidget {
           ),
         ),
       ),
+    );
+  }
+
+  Route<dynamic> _getRoute(RouteSettings settings) {
+    if (settings.name == '/edit') {
+      // FooRoute constructor expects SomeObject
+      return _buildRoute(settings, new EditView(settings.arguments));
+    } else if (settings.name == '/view') {
+      // FooRoute constructor expects SomeObject
+      return _buildRoute(settings, new ViewView(settings.arguments));
+    }
+
+    return null;
+  }
+
+  MaterialPageRoute _buildRoute(RouteSettings settings, Widget builder) {
+    return new MaterialPageRoute(
+      settings: settings,
+      builder: (ctx) => builder,
     );
   }
 }

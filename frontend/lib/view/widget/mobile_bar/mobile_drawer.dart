@@ -20,12 +20,16 @@ class MobileDrawer extends StatelessWidget {
             children: [
               _buildDrawerHeader(),
               MobileDrawerItem(
-                onTap: () {},
+                onTap: () {
+                  Navigator.pushNamed(context, "/");
+                },
                 icon: kComplaintsIcon,
                 title: kComplaints,
               ),
               MobileDrawerItem(
-                onTap: () {},
+                onTap: () {
+                  Navigator.pushNamed(context, "/profile");
+                },
                 icon: kProfileIcon,
                 title: kProfile,
               ),

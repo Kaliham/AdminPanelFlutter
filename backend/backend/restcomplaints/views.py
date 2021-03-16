@@ -1,4 +1,4 @@
-from restcomplaints.serializers import ComplaintsSerializer
+from restcomplaints.serializers import ComplaintsSerializer,AccountSerializer
 from django.http.response import JsonResponse
 from django.shortcuts import render
 from rest_framework import status
@@ -13,9 +13,11 @@ def create_account(request):
         data = request.data
         email = data["email"].strip()
         password = data["password"].strip()
+        admin = data['admin']
+        
         if(len(Account.objects.filter(email=email))>0):
             return Response({"response":"Account exists","status":"failed"})
-        new_account = Account.objects.create(email=email,password=password)
+        new_account = Account.objects.create(email=email,password=password,admin=admin)
         
         new_account.save()
         return Response({"response":"Account Created!","status":"success"})
@@ -29,8 +31,11 @@ def login(request):
         data = request.data
         email = data["email"].strip()
         password = data["password"].strip()
-        if(len(Account.objects.filter(email=email,password=password))>0):
-            return Response({"response":True,"status":"success"})
+        accounts = Account.objects.filter(email=email,password=password)
+        if(len(accounts)>0):
+            account=accounts.get(email=email)
+            
+            return Response({"response":True,"status":"success","admin":account.admin})
         return Response({"response":False,"status":"failed"})
     except Exception:
         return Response({"resposne":False,"status":"error"})
@@ -78,6 +83,53 @@ def edit_complaints(request):
         complaint.status = status
         complaint.save()
 
+        return Response({"response":"updated!","status":"success"})
+    except Exception:
+        return Response({"response":"error occurred!","status":"failed"})
+    
+
+@api_view(['POST'])
+def get_all_complaints(request):
+    try:
+        complaints = Complaints.objects.all()
+        serializer = ComplaintsSerializer(complaints,many=True)
+        return Response({"response":serializer.data,"status":"success"})
+    except Exception:
+        return Response({"response":"error occurred!","status":"failed"})
+    
+
+@api_view(['POST'])
+def change_account(request):
+    try:
+        data = request.data
+        email = data['email']
+        admin = data['admin']
+        account = Account.objects.get(email=email)
+        account.admin = admin
+        account.save()
+        return Response({"response":"updated!","status":"success"})
+    except Exception:
+        return Response({"response":"error occurred!","status":"failed"})
+
+@api_view(['POST'])  
+def get_accounts(request):
+    try:
+        account = Account.objects.all()
+        serializer = AccountSerializer(account,many=True)
+        return Response({"response":serializer.data,"status":"success"})
+    except Exception:
+        return Response({"response":"error occurred!","status":"failed"})
+    
+@api_view(['POST'])
+def change_password(request):
+    try:
+        data = request.data
+        email = data['email']
+        password = data['password']
+        newpassword = data['newpassword']
+        account = Account.objects.get(email=email,password=password)
+        account.password = newpassword
+        account.save()
         return Response({"response":"updated!","status":"success"})
     except Exception:
         return Response({"response":"error occurred!","status":"failed"})

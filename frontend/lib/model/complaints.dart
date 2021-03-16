@@ -3,6 +3,7 @@ class Complaint {
   String description;
   String type;
   String gender;
+  String status;
   int occurrence;
   int rating;
   int id;
@@ -16,5 +17,6 @@ class Complaint {
     this.platforms,
     this.rating,
     this.type,
+    this.status = "pending resolution",
   });
 }

@@ -4,13 +4,20 @@ class DropBox extends StatefulWidget {
   Function function;
   Map<String, dynamic> data;
   String text;
-  DropBox({this.function, this.data, this.text});
+  var value;
+  DropBox({this.function, this.data, this.text, this.value = ""});
   @override
   _DropBoxState createState() => _DropBoxState();
 }
 
 class _DropBoxState extends State<DropBox> {
   var stateValue;
+  @override
+  void initState() {
+    super.initState();
+    stateValue = widget.value;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(

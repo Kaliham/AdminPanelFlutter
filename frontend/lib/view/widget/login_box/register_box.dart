@@ -34,11 +34,7 @@ class RegisterBox extends StatelessWidget {
       width: w,
       child: Center(
           child: RegisterContent(
-        confirmEmailTec: confirmEmailTec,
-        emailTec: emailTec,
-        passwordTec: passwordTec,
         height: h,
-        confirmPasswordTec: confirmPasswordTec,
       )),
     );
   }

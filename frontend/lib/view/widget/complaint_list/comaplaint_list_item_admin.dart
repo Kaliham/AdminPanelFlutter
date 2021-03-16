@@ -4,10 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:frontend/constants/color_constants.dart';
 import 'package:frontend/model/complaints.dart';
 
-class ComplaintListItem extends StatelessWidget {
+class ComplaintListItemAdmin extends StatelessWidget {
   final Function onTap, statusOnTap;
   final Complaint complaint;
-  ComplaintListItem({this.statusOnTap, this.onTap, this.complaint});
+  ComplaintListItemAdmin({this.statusOnTap, this.onTap, this.complaint});
 
   Color get statusColor => kFlamingoPink;
   @override

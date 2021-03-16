@@ -8,6 +8,8 @@ class RegisterMobile extends StatelessWidget {
   Widget build(BuildContext context) {
     final double height = MediaQuery.of(context).size.height;
     return Container(
+      height: height,
+      width: double.infinity,
       child: SingleChildScrollView(
         child: RegisterContent(
           height: height,

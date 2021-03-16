@@ -1,5 +1,6 @@
 class Account {
   String email;
   int id;
-  Account({this.email, this.id});
+  bool admin;
+  Account({this.email, this.id, this.admin});
 }

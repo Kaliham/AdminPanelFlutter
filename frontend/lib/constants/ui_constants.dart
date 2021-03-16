@@ -21,3 +21,6 @@ TextStyle kTitleTextStyle = GoogleFonts.fascinate(
   color: kBiscay,
   fontSize: 23,
 );
+TextStyle get kTextStyle {
+  return TextStyle(fontWeight: FontWeight.w600, fontSize: 18);
+}

@@ -10,7 +10,9 @@ import 'package:shared_preferences/shared_preferences.dart';
 class AuthWrapper extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    if (GetIt.I.get<PreferenceService>().email ?? "".isNotEmpty) {
+    print("saved");
+    print(GetIt.I.get<PreferenceService>().email ?? "");
+    if ((GetIt.I.get<PreferenceService>().email ?? "").isNotEmpty) {
       return HomeView();
     }
     return StreamBuilder<Account>(

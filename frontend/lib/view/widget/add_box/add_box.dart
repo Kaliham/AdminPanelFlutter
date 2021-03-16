@@ -14,7 +14,7 @@ import 'package:get_it/get_it.dart';
 class AddBox extends StatelessWidget {
   String type, gender;
   int occurrence = 0;
-  Complaint complaint = new Complaint();
+  Complaint complaint = new Complaint(occurrence: 0, platforms: []);
   TextEditingController titleTec = new TextEditingController(),
       descriptionTec = new TextEditingController();
 
@@ -23,6 +23,7 @@ class AddBox extends StatelessWidget {
     double width = MediaQuery.of(context).size.width;
     return Container(
       decoration: BoxDecoration(
+        color: Colors.white,
         borderRadius: BorderRadius.circular(20),
         boxShadow: kBoxShadow,
       ),
@@ -69,18 +70,35 @@ class AddBox extends StatelessWidget {
               width: 360,
               child: DefaultButton(
                 text: "Submit",
-                onPressed: () {
-                  complaint.title = titleTec.text;
-                  complaint.description = descriptionTec.text;
-                  GetIt.I.get<ApiService>().submitComplaint(complaint);
-                  print(complaint.title);
-                },
+                onPressed: () => onPressed(context),
               ),
             ),
           ],
         ),
       ),
     );
+  }
+
+  void onPressed(BuildContext context) async {
+    complaint.title = titleTec.text;
+    complaint.description = descriptionTec.text;
+    if (complaint.title.isNotEmpty &&
+        complaint.description.isNotEmpty &&
+        complaint.type.isNotEmpty &&
+        complaint.gender.isNotEmpty) {
+      String reply = await GetIt.I.get<ApiService>().submitComplaint(complaint);
+      if (reply == "success") {
+        ScaffoldMessenger.of(context)
+            .showSnackBar(SnackBar(content: Text("Successfully added!")));
+      } else {
+        ScaffoldMessenger.of(context)
+            .showSnackBar(SnackBar(content: Text("Something went wrong!")));
+      }
+      Navigator.pop(context);
+    } else {
+      ScaffoldMessenger.of(context)
+          .showSnackBar(SnackBar(content: Text("Enter empty fields!")));
+    }
   }
 
   void setOccurrence(value) {

@@ -7,18 +7,14 @@ import 'package:frontend/view/widget/links/text_link.dart';
 import 'package:get_it/get_it.dart';
 
 class RegisterContent extends StatelessWidget {
-  final TextEditingController emailTec,
-      confirmEmailTec,
-      passwordTec,
-      confirmPasswordTec;
+  final TextEditingController emailTec = TextEditingController(),
+      confirmEmailTec = TextEditingController(),
+      passwordTec = TextEditingController(),
+      confirmPasswordTec = TextEditingController();
   final double height, width, spacing;
   RegisterContent({
     Key key,
     this.spacing = 10,
-    this.emailTec,
-    this.confirmEmailTec,
-    this.confirmPasswordTec,
-    this.passwordTec,
     this.height,
     this.width,
   }) : super(key: key);
@@ -92,6 +88,13 @@ class RegisterContent extends StatelessWidget {
                   passwordTec.text,
                   confirmEmailTec.text,
                   confirmPasswordTec.text);
+              print(success);
+              if (success) {
+                Navigator.pushNamed(context, "/");
+              } else {
+                ScaffoldMessenger.of(context)
+                    .showSnackBar(SnackBar(content: Text("Credential failed")));
+              }
             },
           ),
           SizedBox(

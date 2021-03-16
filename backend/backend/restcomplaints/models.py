@@ -6,6 +6,7 @@ from django import forms
 class Account(models.Model):
     email = models.EmailField(unique=True)
     password = models.CharField(max_length=24)
+    admin = models.BooleanField(default=False)
     def __str__(self):
         return self.email
     
@@ -21,4 +22,6 @@ class Complaints(models.Model):
     status = models.CharField(max_length=100,default="pending resolution")
     def __str__(self):
         return self.title
+
+
 
