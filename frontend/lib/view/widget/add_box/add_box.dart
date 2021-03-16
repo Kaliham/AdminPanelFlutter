@@ -103,7 +103,6 @@ class AddBox extends StatelessWidget {
 
   void setOccurrence(value) {
     complaint.occurrence = value;
-    print(occurrence);
   }
 
   void setPlatforms(value) {

@@ -88,7 +88,6 @@ class RegisterContent extends StatelessWidget {
                   passwordTec.text,
                   confirmEmailTec.text,
                   confirmPasswordTec.text);
-              print(success);
               if (success) {
                 Navigator.pushNamed(context, "/");
               } else {

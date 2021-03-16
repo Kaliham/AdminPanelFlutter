@@ -19,7 +19,6 @@ class ComplaintList extends StatelessWidget {
           return Center(
             child: CircularProgressIndicator(),
           );
-        print(snapshot.data.length);
         return Container(
           child: ListView.separated(
             separatorBuilder: (context, ind) {

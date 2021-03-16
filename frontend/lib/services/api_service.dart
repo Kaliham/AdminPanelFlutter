@@ -31,13 +31,11 @@ class ApiService {
       "rating": complaint.rating ?? 5,
       "status": null,
     };
-    print(request.toString());
     var response = await http.post(
       Uri.http(url, "/add_complaints"),
       body: jsonEncode(request),
       headers: kHeaders,
     );
-    print(json.decode(response.body));
     return json.decode(response.body)["status"].toString();
   }
 
@@ -46,13 +44,11 @@ class ApiService {
       "id": complaint.id,
       "status": complaint.status,
     };
-    print(request.toString());
     var response = await http.post(
       Uri.http(url, "/edit_complaints"),
       body: jsonEncode(request),
       headers: kHeaders,
     );
-    print(json.decode(response.body));
     return json.decode(response.body)["status"].toString();
   }
 
@@ -104,8 +100,6 @@ class ApiService {
         id: int.parse(item['id'].toString()),
         status: item['status'].toString(),
       );
-      print("plaforms");
-      print(complaint.status);
       complaint.platforms.removeAt(complaint.platforms.length - 1);
       complaints.add(complaint);
     }

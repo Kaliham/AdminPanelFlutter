@@ -26,14 +26,11 @@ class AccountService {
     confirmEmail = confirmEmail.toLowerCase().trim();
     password = password.trim();
     confirmPassword = confirmPassword.trim();
-    print(email + "," + confirmEmail + "," + password + "," + confirmPassword);
     if (password != confirmPassword || email != confirmEmail) {
       return false;
     }
     Map<String, dynamic> map = await getIt.get<ApiService>().send(
         {"email": email, "password": password, "admin": false}, "/create_user");
-    print("gg");
-    print(map);
     if (map['status'] != "success") {
       return false;
     }
@@ -42,7 +39,6 @@ class AccountService {
 
   Future<String> changePassword(
       String password, String confirmPassword, String newpassword) async {
-    print(password + "," + confirmPassword);
     if (newpassword != confirmPassword)
       return "new password and confirm new password should be the same!";
     Map<String, dynamic> result = await getIt.get<ApiService>().send({

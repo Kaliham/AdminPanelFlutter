@@ -27,7 +27,6 @@ class ComplaintEditBox extends StatelessWidget {
     String platforms = "";
     bool flag = false;
     for (String platform in complaint.platforms) {
-      print(platform);
       if (flag) platforms += ",";
       platforms += platform;
       flag = true;
